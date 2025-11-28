@@ -163,7 +163,7 @@ Seven mental health-specific metrics:
 ## Deliverables
 
 ### 1. Medium Article
-**Link:** [Add your Medium article link here]
+**Link:** [Building Empathetic AI: How MentalChat16K Is Shaping the Future of Mental Health Conversations](https://medium.com/@balamuralikrishnan.anbalagan/building-empathetic-ai-how-mentalchat16k-is-shaping-the-future-of-mental-health-conversations-8d112d224cf9)
 
 A comprehensive article covering:
 - Introduction to mental health AI challenges
