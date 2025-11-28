@@ -1,0 +1,59 @@
+SLIDE 1:
+Hi, I'm Bala Anbalagan, and today I'll be presenting on MentalChat16K - a benchmark dataset for conversational mental health assistance. This is part of my CMPE 255 Data Mining assignment at San Jose State University. The paper I'm covering was published by researchers at the University of Pennsylvania.
+
+SLIDE 2:
+Let's start with why this matters. There's a massive shortage of mental health professionals - many regions have fewer than 10 providers per 100,000 people. Even where therapists exist, cost, stigma, and scheduling make access difficult. AI chatbots promise 24/7 support, but most current ones fall short. They're trained on generic conversation data, so they give shallow encouragement or worse - respond unsafely to disclosures of self-harm. What we need is AI that balances warmth with boundaries and knows when to recommend professional help.
+
+SLIDE 3:
+So what is MentalChat16K? It's a dataset of over 16,000 question-answer pairs specifically designed for mental health dialogue modeling. The dataset combines two sources: About 39% comes from real clinical transcripts - these are anonymized and paraphrased interviews from behavioral health interventions. The remaining 61% is synthetic data generated to fill topic gaps. Together, this covers 33 mental health topics including depression, anxiety, grief, trauma, addiction, and relationship stress. This is roughly double the size of the previous benchmark, Psych8K.
+
+SLIDE 4:
+Here you can see the breakdown visually - 60.7% synthetic data and 39.3% interview-derived data. The key insight is that you need both: real data for authenticity and synthetic data for coverage. This combination is what makes MentalChat16K unique.
+
+SLIDE 5:
+And here's how the topics are distributed across the dataset. Depression and anxiety are the most common, but there's good coverage across grief, relationships, stress, trauma, and other areas. This breadth is important for training a well-rounded model that can handle diverse mental health conversations.
+
+SLIDE 6:
+Now let me explain the clever data pipeline the researchers developed. The biggest challenge was privacy - how do you use sensitive clinical transcripts without exposing patient data? Their solution has two parallel tracks. For real clinical data, they take raw transcripts from clinical trials, run them through a locally-hosted Mistral-7B model for paraphrasing - this is key, no external API ever sees the original conversations - then extract question-answer pairs while preserving therapeutic intent. For synthetic data, they analyze which topics are underrepresented, use GPT-3.5 with the Airoboros framework to generate new QA pairs, and apply quality control filters. Both streams merge into the final dataset.
+
+SLIDE 7:
+Here's where data mining principles really come into play. Traditional NLP metrics like BLEU or ROUGE don't work well for mental health conversations. A response can be grammatically perfect but emotionally tone-deaf. So the researchers developed seven therapeutic metrics: Active Listening, Empathy and Validation, Safety and Trust, Open-mindedness, Clarity and Encouragement, Boundaries and Ethics, and Holistic Approach. Each response is scored 1 to 10 on all seven dimensions.
+
+SLIDE 8:
+What's also interesting is they use three different evaluators: GPT-4 for automated scoring, Gemini Pro for a second perspective, and Human raters for ground truth. This multi-evaluator approach is important because each catches different issues. GPT-4 is good at logical gaps, Gemini flags tone problems, and humans are best at judging warmth. The inter-rater agreement was moderate, with Cohen's Kappa around 0.44, which tells us that evaluating empathy is genuinely difficult.
+
+SLIDE 9:
+For the benchmarking, they fine-tuned seven different 7-billion parameter models using QLoRA - that's Quantized Low-Rank Adaptation, which lets you fine-tune large models efficiently. The models tested include LLaMA-2, Mistral, Vicuna, and Zephyr. They tried three training configurations: Synthetic data only, Interview data only, and Both combined. All training was done on a single NVIDIA A100 GPU.
+
+SLIDE 10:
+The evaluation framework uses three different evaluators working together. GPT-4 provides automated assessment and tends to favor synthetic data fine-tuning due to alignment with GPT-3.5 patterns. Gemini Pro offers an alternative AI perspective and valued real interview data, especially for safety metrics. Human evaluators provide the ground truth and consistently preferred fine-tuned models over base versions.
+
+SLIDE 11:
+So what did they find? First, fine-tuning clearly works. Models trained on MentalChat16K significantly outperformed base models across all seven metrics, with scores improving by 20 to 35 percent. The biggest improvements were in empathy and safety - exactly what you want. Second, there's a trade-off between synthetic and real data. And third, evaluators disagree in interesting ways, suggesting we shouldn't rely on just one evaluation method.
+
+SLIDE 12:
+Let me share my own take on this work. The strengths I see include: the privacy-first local processing approach, therapeutically-aligned evaluation metrics, the balanced mix of real and synthetic data, and the rigorous multi-evaluator framework. What could be improved includes multilingual extensions, longer dialogues instead of just QA pairs, broader population sources, and multi-turn conversation modeling. Exciting applications include pre-therapy warm-ups, between-session check-ins, and psychoeducational companions.
+
+SLIDE 13:
+From a data mining perspective, this paper demonstrates several important concepts from CMPE 255. Data Curation through multi-source dataset creation. Preprocessing through privacy-preserving paraphrasing using local LLMs. Data Quality through manual filtering and de-identification protocols. Feature Engineering through the 7 therapeutic metrics. Evaluation through multi-evaluator benchmarking. And Benchmark Creation for standardized comparison in future research.
+
+SLIDE 14:
+No paper is complete without acknowledging limitations. First, synthetic data may lack authenticity - it can sound supportive but hollow. Second, the dataset is English-only, so cultural and linguistic nuances from other languages are missing. Third, the interview data came from a specific population - hospice caregivers - so it may not generalize to all mental health contexts. And most importantly, AI is not therapy. Human escalation is required for crises.
+
+SLIDE 15:
+This chart shows the distribution of input and output lengths in the dataset. Input questions average about 95 words while responses average 314 words, reflecting the detailed, thoughtful nature of therapeutic conversations. This asymmetry is intentional - good therapeutic responses require depth and nuance.
+
+SLIDE 16:
+This heatmap shows where evaluators agree and disagree. Key insights: GPT-4 scores clarity and empathy higher, Gemini flags boundary-setting and safety issues more strictly, and humans provide stricter evaluation on warmth and cultural appropriateness. Understanding these differences is crucial for interpreting benchmark results.
+
+SLIDE 17:
+This chart compares model performance across training configurations. All fine-tuned configurations significantly outperform base models. You can see the red base model bars are much lower than the fine-tuned versions. Interestingly, combined training doesn't always beat single-source approaches, suggesting that data quality matters more than quantity.
+
+SLIDE 18:
+Fine-tuned models show consistent improvements across all 7 therapeutic metrics. The largest gains are in empathy, safety, and active listening - the metrics that matter most for mental health applications. This validates the core hypothesis that domain-specific training data leads to better therapeutic conversations.
+
+SLIDE 19:
+To wrap up - MentalChat16K provides over 16,000 QA pairs for mental health AI, uses a privacy-preserving pipeline with local LLMs, introduces 7 therapeutic evaluation metrics, and shows significant improvement over base models of 20 to 35 percent. This work serves as a template for sensitive-domain AI research. It's not a silver bullet, but it's a meaningful step toward AI that listens better.
+
+SLIDE 20:
+Here are the key resources: The paper is available on arXiv, the dataset is on HuggingFace, my GitHub repository contains this analysis, and my Medium article has more details. Thank you for watching. This presentation is part of my CMPE 255 Data Mining coursework at San Jose State University. I'm Bala Anbalagan, and I appreciate your time.

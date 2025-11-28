@@ -175,7 +175,7 @@ A comprehensive article covering:
 ### 2. Slide Presentation
 **SlideShare Link:** [Add your SlideShare link here]
 
-**PDF Location:** [slides/MentalChat16K_Presentation.pdf](slides/)
+**PDF Location:** [MentalChat16K_Presentation.pdf](slides/MentalChat16K_Presentation.pdf)
 
 ### 3. Video Presentation
 **Duration:** 10-15 minutes
