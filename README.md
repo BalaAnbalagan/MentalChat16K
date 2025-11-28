@@ -180,7 +180,13 @@ A comprehensive article covering:
 ### 3. Video Presentation
 **Duration:** 10-15 minutes
 
-**Link:** [Add your video link here]
+**YouTube:** [MentalChat16K - CMPE 255 Presentation](https://youtu.be/4Shkre3HWN0)
+
+<a href="https://youtu.be/4Shkre3HWN0">
+  <img src="https://img.youtube.com/vi/4Shkre3HWN0/maxresdefault.jpg" alt="MentalChat16K Video Presentation" width="600">
+</a>
+
+> Click the image above to watch the presentation on YouTube
 
 ---
 
